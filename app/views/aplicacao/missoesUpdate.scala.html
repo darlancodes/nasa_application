@@ -1,0 +1,92 @@
+@(formMissaoStaging: Form[MissaoStaging], planetas: List[Planeta], espaconaves: List[Espaconave])
+@import helper._
+@import java.math.BigInteger; var p=0; var e=0;
+@main("Formulário Missoes") {
+	<!DOCTYPE html>
+	<meta charset="UTF-8">
+	<style>
+		<!--
+			.wrapper{
+				
+				width:40%;
+				display:block;
+				margin:0 auto;
+				padding: 5%;
+			
+			}
+		-->
+	</style>
+	
+	<div class="wrapper">
+		<h1>Formulário Missões</h1>
+		
+		@helper.form(action = routes.MissoesStaging.update()) {
+			
+			<fieldset>
+			
+			<legend>Missões (@formMissaoStaging("nome").valueOr("Novo"))</legend>
+				@helper.inputText(formMissaoStaging("id"),'_label -> "Id Missão",'readonly -> "readonly")
+		
+			
+			@if(planetas.isEmpty){
+			
+			<h4>Não ha planetas cadastrados</h4>
+		
+			}else{
+		
+			
+		
+			<h3>Planetas</h3>
+				      
+			       <select class = "selectone" name="planeta_id"> @for(planeta <- planetas){
+	      				<option value = @planeta.getId()>@planeta.getId() - @planeta.getNome()</option>
+	      					
+	      				}
+	  				</select>
+			      
+			}		
+			<br>
+			<br>
+			@helper.inputText(formMissaoStaging("Planeta_id"), '_label -> "Insira número da Planeta")
+			
+			@if(espaconaves.isEmpty){
+			
+			<h4>Não ha espaçonaves cadastradas</h4>
+		
+			}else{
+		
+			<h3>Modelo Espaçonaves</h3>
+				      
+			       <select class = "selectone" name="espaconave_id"> @for(espaconave <- espaconaves){
+	      				<option value = @espaconave.getId()>@espaconave.getId() - @espaconave.getModelo()</option>
+	      						
+	  					} 
+	  				</select>
+			      
+			}
+			<br>
+			<br>
+		
+			@helper.inputText(formMissaoStaging("Espaconave_id"), '_label -> "Insira número da Espaconave")						
+			@helper.inputDate(formMissaoStaging("Lancamento"), '_label -> "Lançamento")
+			@helper.inputText(formMissaoStaging("Orcamento"), '_label -> "Orçamento")
+			
+			
+			
+			<input type="checkbox" name="tripulada" value="true" /> <span>Tripulada? (marque se for Tripulada)</span>
+			<input type="hidden" name="tripulada" value="false" />
+			
+			</fieldset>
+			
+			<br>
+			<br>
+			
+			<input type="submit" class="btn btn-warning" value="Atualizar">
+			<a class="btn btn-success" href="@routes.Application.principal()">Cancelar</a>
+			<a class="btn btn-success" href="@routes.Application.principal()">Homepage</a>
+			<a class="btn btn-primary" href="@routes.Missoes.lista()">Lista   de   Missões</a>
+		
+	</div>
+		
+	}
+}

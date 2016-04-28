@@ -1,0 +1,37 @@
+@(formEspaconave: Form[Espaconave])
+@import helper._
+<!DOCTYPE html>
+@main("Formulário Espaçonaves") {
+	
+	<meta charset="UTF-8">
+	
+	<style>
+		<!--
+			.wrapper{
+				
+				width:46%;
+				display:block;
+				margin:0 auto;
+				padding: 10%;
+			
+			}
+		-->
+	</style>
+	
+	<div class="wrapper">
+		<h2>Formulário Espaçonaves</h2>
+		@helper.form(action = routes.Espaconaves.salvar()) {
+			<fieldset>
+			
+			<legend>Espaçonave (@formEspaconave("nome").valueOr("Novo"))</legend>
+			@helper.inputText(formEspaconave("Pais"), '_label -> "País")
+			@helper.inputText(formEspaconave("Modelo"),'_label -> "Modelo")
+			</fieldset>
+			<input type="submit" class="btn btn-primary" value="Salvar">
+			<a class="btn btn-success" href="@routes.Application.principal()">Cancelar</a>
+			<a class="btn btn-success" href="@routes.Application.principal()">Homepage</a>
+			<a class="btn btn-primary" href="@routes.Espaconaves.lista()">Lista de Espaçonaves</a>
+			
+	</div>	
+	}
+}

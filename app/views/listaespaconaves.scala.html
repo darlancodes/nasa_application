@@ -1,0 +1,59 @@
+@(espaconaves: List[Espaconave])
+@import helper._
+@main("Espaçonaves") {
+	<meta charset="UTF-8">
+	
+	
+	
+	<style>
+		<!--
+			.wrapper{
+				
+				width:66%;
+				display:block;
+				margin:0 auto;
+				padding: 10%;
+			
+			}
+			h6{
+				color:#DB3030;
+			}
+		-->
+	</style>
+	
+	<div class= "wrapper">
+			<h2>Lista de Espaçonaves Cadastradas</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>País</th>
+						<th>Modelo</th>
+						<th>Tripulada</th>
+					</tr>
+				</thead>
+				<tbody>
+				@if(espaconaves.isEmpty){
+			
+				<td><h4>Não ha Espaçonaves</h4></td>
+		
+				}else{
+					@for(espaconave <- espaconaves) {
+						<tr>
+							<td>@espaconave.getPais()</td>
+							<td>@espaconave.getModelo()</td>
+			
+							<td><a type="submit" class="btn btn-danger" href="@routes.Espaconaves.remover(espaconave.getId())">Excluir Registro</a></td>
+							<td><a type="submit" class="btn btn-warning" href="@routes.Espaconaves.exibir_editar(espaconave.getId())">Editar Registro</a></td>
+						</tr>
+					}
+				}
+				</tbody>
+			</table>
+			<h6>*Verifique se a Espaçonave está sendo usada em alguma missão ANTES de excluir!</h6>
+		<br>
+		  
+		<a class="btn btn-primary" href="@routes.Application.principal()">Cancelar</a>
+		<a class="btn btn-primary" href="@routes.Application.principal()">Homepage</a>  
+		
+	</div>	
+}

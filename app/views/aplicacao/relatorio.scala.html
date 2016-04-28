@@ -1,0 +1,66 @@
+@(formMissao: Form[Missao], missoes: List[Missao], planetas: List[Planeta], espaconaves: List[Espaconave])
+@import helper._
+@import java.math.BigInteger; var p=0; var e=0;
+@main("Relatorio Missoes") {
+
+	<meta charset="UTF-8">
+	<style>
+		<!--
+			.wrapper{
+				
+				width:86%;
+				display:block;
+				margin:0 auto;
+				padding: 10%;
+			
+			}
+		-->
+	</style>
+	<div class="wrapper">
+		<h2>Relatório Missões</h2>
+		@if(missoes.isEmpty){
+			<h3>Não ha Missões</h3>
+			
+		}else{
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nome do Planeta</th>
+						<th>Modelo Espaçonave</th>
+						<th>Data de Lançamento</th>
+						<th>Orçamento Missão R$</th>
+						<th>Tripulada</th>
+						
+					</tr>
+				</thead>
+				<tbody>
+				@for(missao <- missoes) {
+					@for(planeta <- planetas){
+						@for(espaconave <- espaconaves){
+							@if(planeta.getId() == missao.getPlaneta().getId() && espaconave.getId()== missao.getEspaconave().getId()){
+								<tr>
+									
+									<td>@planeta.getNome()</td>
+									<td>@espaconave.getModelo()</td>
+									<td>@missao.getLancamento()</td>
+									<td>@missao.getOrcamento()</td>
+									@if(missao.getTripulada() == true){
+										<td>Missão tripulada</td>
+									}else{
+										<td>Missão não tripulada</td>
+									}
+							}
+						}
+					}
+				}
+				</tbody>
+			</table>
+		
+	}
+		<a class="btn btn-primary" href="@routes.Application.principal()">Cancelar</a>
+		<a class="btn btn-primary" href="@routes.Application.principal()">Homepage</a>
+
+	
+	</div>
+
+}

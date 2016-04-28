@@ -1,0 +1,62 @@
+@(planetas: List[Planeta])
+@import helper._
+@main("Planetas") {
+	<meta charset="UTF-8">
+	
+	
+	
+	<style>
+		<!--
+			.wrapper{
+				
+				width:70%;
+				display:block;
+				margin:0 auto;
+				padding: 10%;
+			
+			}
+			h6{
+				color:#DB3030;
+			}
+		-->
+	</style>
+	
+	<div class= "wrapper">
+			<h2>Lista de Planetas Cadastrados</h2>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>Nome Planeta</th>
+						<th>Galáxia</th>
+						<th>Habitável</th>
+					</tr>
+				</thead>
+				<tbody>
+				@if(planetas.isEmpty){
+			
+				<td><h4>Não ha planetas</h4></td>
+		
+				}else{
+					@for(planeta <- planetas) {
+						<tr>
+							<td>@planeta.getNome()</td>
+							<td>@planeta.getSistema()</td>
+							 @if(planeta.getHabitavel() == true){
+							 	<td>Sim</td>
+							 }else{
+							 	<td>Não</td>
+							 }
+							<td><a type="submit" class="btn btn-danger" href="@routes.Planetas.remover(planeta.getId())">Excluir Registro</a></td>
+							<td><a type="submit" class="btn btn-warning" href="@routes.Planetas.exibir_editar(planeta.getId())">Editar Registro</a></td>
+						</tr>
+					}
+				}
+				</tbody>
+			</table>
+		  	<h6>*Verifique se o Planeta está como destino de alguma missão ANTES de excluir!</h6>
+		<br>
+		<a class="btn btn-primary" href="@routes.Application.principal()">Cancelar</a>
+		<a class="btn btn-primary" href="@routes.Application.principal()">Homepage</a>  
+		
+	</div>	
+}

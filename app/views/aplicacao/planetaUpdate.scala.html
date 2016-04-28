@@ -1,0 +1,42 @@
+@(formPlaneta: Form[Planeta], id: Long)
+@import helper._
+@main("Formulário Planetas") {
+	<meta charset="UTF-8">
+	
+	<style>
+		<!--
+			.wrapper{
+				
+				width:46%;
+				display:block;
+				margin:0 auto;
+				padding: 10%;
+			
+			}
+		-->
+	</style>
+	
+	<div class="wrapper">
+		<h1>Formulário Planetas</h1>
+		@helper.form(action = routes.Planetas.update()) {
+			<fieldset>
+			
+			<legend>Planeta (@formPlaneta("nome").valueOr("Novo"))</legend>
+			@helper.inputText(formPlaneta("id"),'_label -> "Id",'readonly -> "readonly")
+			@helper.inputText(formPlaneta("Nome"), '_label -> "Nome")
+			@helper.inputText(formPlaneta("Sistema"),'_label -> "Sistema")
+			
+			<input type="checkbox" name="habitavel" value="true" /> <span>Habitável? (marque se for habitável)</span>
+			<input type="hidden" name="habitavel" value="false" />
+			
+			</fieldset>
+			
+			<input type="submit" class="btn btn-warning" value="Atualizar">
+			<a class="btn btn-success" href="@routes.Application.principal()">Cancelar</a>
+			<a class="btn btn-success" href="@routes.Application.principal()">Homepage</a>
+			<a class="btn btn-primary" href="@routes.Planetas.lista()">Lista de Planetas</a>
+		}
+		
+	</div>	
+	
+}

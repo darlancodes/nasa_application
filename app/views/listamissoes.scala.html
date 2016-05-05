@@ -42,7 +42,7 @@
 									
 									<td>@planeta.getNome()</td>
 									<td>@espaconave.getModelo()</td>
-									<td>@missao.getLancamento()</td>
+									<td>@missao.getLancamento().format("mm/dd/yy")</td>
 									<td>@missao.getOrcamento()</td>
 									@if(missao.getTripulada() == true){
 										<td>Sim</td>

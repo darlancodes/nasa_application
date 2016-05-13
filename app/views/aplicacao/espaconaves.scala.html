@@ -21,8 +21,7 @@
 	<div class="wrapper">
 		<h2>Formulário Espaçonaves</h2>
 		@helper.form(action = routes.Espaconaves.salvar()) {
-			<fieldset>
-			
+			<fieldset>	
 			<legend>Espaçonave (@formEspaconave("nome").valueOr("Novo"))</legend>
 			@helper.inputText(formEspaconave("Pais"), '_label -> "País")
 			@helper.inputText(formEspaconave("Modelo"),'_label -> "Modelo")

@@ -1,4 +1,4 @@
-@(formEspaconave: Form[Espaconave])
+@(formEspaconave: Form[Espaconave])(conteudo: Html)
 @import helper._
 <!DOCTYPE html>
 @main("Formulário Espaçonaves") {
@@ -20,9 +20,9 @@
 	
 	<div class="wrapper">
 		<h2>Formulário Espaçonaves</h2>
+		<legend>Espaçonave (@formEspaconave("nome").valueOr("Novo"))</legend>
 		@helper.form(action = routes.Espaconaves.salvar()) {
 			<fieldset>	
-			<legend>Espaçonave (@formEspaconave("nome").valueOr("Novo"))</legend>
 			@helper.inputText(formEspaconave("Pais"), '_label -> "País")
 			@helper.inputText(formEspaconave("Modelo"),'_label -> "Modelo")
 			</fieldset>

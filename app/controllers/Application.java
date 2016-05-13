@@ -15,21 +15,7 @@ import views.html.*;
 public class Application extends Controller {
 
     public Result index() {
-        return ok(index.render("Your new application is ready."));
+        return ok(views.html.index.render());
     }
     
-    public Result principal() {
-        return ok(views.html.principal.render());
-    }
-    
-    //public Result teste() {
-    	    	
-    	//return ok(views.html.home.render(new ArrayList()));
-    //}
-    
-    //public Result names_plan_espaco() {
-    	
-    	//return ok(views.html.missoes.render(new ArrayList(),new ArrayList()));
-    //}
-
 }

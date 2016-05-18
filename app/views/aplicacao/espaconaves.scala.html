@@ -1,10 +1,10 @@
-@(formEspaconave: Form[Espaconave])(conteudo: Html)
-@import helper._
+@(formEspaconave: Form[Espaconave])
+
+@import meuhelper._
 <!DOCTYPE html>
 @main("Formulário Espaçonaves") {
 	
 	<meta charset="UTF-8">
-	
 	<style>
 		<!--
 			.wrapper{
@@ -20,17 +20,21 @@
 	
 	<div class="wrapper">
 		<h2>Formulário Espaçonaves</h2>
+		
 		<legend>Espaçonave (@formEspaconave("nome").valueOr("Novo"))</legend>
-		@helper.form(action = routes.Espaconaves.salvar()) {
-			<fieldset>	
-			@helper.inputText(formEspaconave("Pais"), '_label -> "País")
-			@helper.inputText(formEspaconave("Modelo"),'_label -> "Modelo")
-			</fieldset>
-			<input type="submit" class="btn btn-primary" value="Salvar">
-			<a class="btn btn-success" href="@routes.Application.index()">Cancelar</a>
-			<a class="btn btn-success" href="@routes.Application.index()">Homepage</a>
-			<a class="btn btn-primary" href="@routes.Espaconaves.lista()">Lista de Espaçonaves</a>
+		
+		@meuhelper.meuForm("Espaconaves",routes.Espaconaves.salvar(),"POST"){
 			
-	</div>	
+			@meuhelper.inputText("Pais", formEspaconave("Pais").value , "Digite Pais", "text")
+			@meuhelper.inputText("Modelo",formEspaconave("Modelo").value, "Digite Modelo", "text")
+			@meuhelper.inputCheckbox("Habitavel", formEspaconave("Habitavel").value, "É Habitável?")     
+		
+			
+		<input type="submit" class="btn btn-primary" value="Salvar">
+		<a class="btn btn-success" href="@routes.Application.index()">Cancelar</a>
+		<a class="btn btn-success" href="@routes.Application.index()">Homepage</a>
+		<a class="btn btn-primary" href="@routes.Espaconaves.lista()">Lista de Espaçonaves</a>
+			
+		</div>	
 	}
 }

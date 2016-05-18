@@ -1,0 +1,17 @@
+views.meuhelper/form.scala.html
+@(nome: String, acao: String, metodo:String)
+  <form name="@name" action="@acao" method="post">
+    @conteudo
+  </form>
+
+-----------------------------------------
+Template personalizado
+@import views.meuhelper._
+
+@meuhelper.Form("planetas",routes.Planetas.salvar,"post"){
+   <label for="nome">Nome:</label>
+   <input type="text" name="nome" value="Name">
+   <input type="checkbox" name="admin" id="admin" value="1">
+   <label for= "admin">Administrador</label>
+   <input type="submit" value="record">
+}

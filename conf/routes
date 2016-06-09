@@ -3,7 +3,9 @@
 # ~~~~
 
 # Home page
-GET     /							controllers.API.getPlaneta()
+GET     /							controllers.API.index()
+GET     /api/planetas				controllers.API.listaPlanetas()
+
 GET     /                           controllers.Application.index()
 
 # Map static resources from the /public folder to the /assets URL path

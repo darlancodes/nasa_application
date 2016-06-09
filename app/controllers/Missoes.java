@@ -41,8 +41,6 @@ public class Missoes extends Controller{
 			missao.delete();
 			return redirect(routes.Missoes.lista());
 
-		}
-		
-		
+		}		
 	
 }
